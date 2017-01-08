@@ -2,7 +2,7 @@
 
 ![pic!](https://github.com/Banjerr/theLoveMachine/blob/master/theLoveMachine.gif)
 
-This is another simple project from the Arduino starter kit. Coded first with native C/C++ and then converting that over to JavaScript utilizing the Johnny-Five lib.
+This is another simple project from the Arduino starter kit. Coded first with native C/C++ and then converting that over to JavaScript utilizing the Johnny-Five lib. The temperature sensor outputs the voltage/temperature back to the terminal via a simple `console.log`. The lights come on depending on how warm the sensor gets. 
 
 ## original Arduino (C/C++) code
 
@@ -96,9 +96,6 @@ board.on('ready', function() {
 
   // set up LEDs on pins 2-4
   _.each(outputPins, function(outputPin) {
-    // ledObject[outputPin] = new five.Led(outputPin);
-    // // make sure they're off
-    // ledObject[outputPin].off();
     board.pinMode(outputPin, five.Pin.OUTPUT); // pin is an output
     board.digitalWrite(outputPin, 0); // they are off
   });
@@ -113,13 +110,11 @@ board.on('ready', function() {
       // Analog to Digital Conversion (ADC) to voltage
       // sensor reports back int in range 0 - 1024, Arduino is 5v
       let voltage = (sensorVal/1024.0) * 5.0;
-
       // more alerts
       console.log(', Volts: ' + voltage);
-
+      
       // convert voltage to temp in degrees C
       let temperature = (voltage - .5) * 100;
-
       // alert again
       console.log(', Temperature degrees C: ' + temperature);
 
